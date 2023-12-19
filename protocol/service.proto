@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package cgs;
+
+service Point_set_service {
+  rpc GetPointSet (Point_set_query) returns (Point_set) {}
+  rpc GetPointAttribute (Point_attribute_query) returns (Point_attribute) {}
+}
+
+message Vector3 {
+  int32 x = 1;
+  int32 y = 2;
+  int32 z = 3;
+}
+
+message Point_set_query {
+  string id = 1;
+}
+
+message Point_set {
+  string id = 1;
+  repeated string attributes = 2;
+}
+
+message Point_attribute_query {
+  string Point_set_id = 1;
+  string type = 2;
+}
+
+enum Attribute_type {
+  STRING = 0;
+  INT = 1;
+  FLOAT = 2;
+  VECTOR2 = 3;
+  VECTOR3 = 4;
+}
+
+message Point_attribute {
+  string Point_set_id = 1;
+  Attribute_type data_type = 2;
+  string name = 3;
+}
