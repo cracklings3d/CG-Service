@@ -5,9 +5,7 @@
 
 
 namespace cgs {
-class Cgs_server : public grpc::Service {
-public:
-};
+grpc::Service::AsyncService* get_service();
 }
 
 
